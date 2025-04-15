@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>技术与工艺 - Final Kit</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    .lang-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #ffcc00;
+      border: none;
+      padding: 10px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 3px;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <!-- 切换语言按钮 -->
+  <button class="lang-toggle" onclick="toggleLanguage()">Switch to English</button>
+
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <!-- 添加 id，不影响原有显示内容 -->
+        <h1 id="header-title">Final Kit</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="../index.html" id="nav-home">首页</a></li>
+          <li><a href="about.html" id="nav-about">关于我们</a></li>
+          <li><a href="products.html" id="nav-products">产品展示</a></li>
+          <li><a href="technology.html" id="nav-technology" class="active">技术与工艺</a></li>
+          <li><a href="contact.html" id="nav-contact">联系我们</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <!-- 主标题 -->
+      <h2 id="tech-heading">技术与工艺</h2>
+      <!-- 核心技术解读 -->
+      <h3 id="core-tech-heading">核心技术解读</h3>
+      <p id="core-tech-desc">
+        Final Kit 专注于免疫层析快速检测技术。我们自主研发的 NC 膜配方和最新一代喷涂-烘干工艺使膜的厚度均一性提升约 30%，产品良率比同行高出约 15%。
+      </p>
+      <!-- 生产工艺流程 -->
+      <h3 id="process-heading">生产工艺流程</h3>
+      <ol id="process-list">
+        <li><strong>配液（原料制备）：</strong> 自主开发的配方确保膜的孔径均一及试剂稳定。</li>
+        <li><strong>流延/喷涂（膜成型）：</strong> 先进工艺令膜厚均匀、连续性更佳，提升产品一致性。</li>
+        <li><strong>烘干固化及表面封闭处理：</strong> 降低非特异性结合，提高检测可靠性。</li>
+        <li><strong>分切组装：</strong> 高自动化生产线确保每小时生产数万份试纸，误差极小。</li>
+      </ol>
+      <!-- 质量管理体系 -->
+      <h3 id="quality-heading">质量管理体系</h3>
+      <p id="quality-desc">
+        从原材料检测到成品出厂，每个环节均严格按照医疗器械 GMP 规范执行。通过 ISO 13485、CE 等国际认证，确保所有产品均达到国际标准。
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-container">
+      <p id="footer-text">&copy; 2023 Final Kit. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // 翻译映射表：key 为各个带 id 元素的英文文本
+    const translations = {
+      "header-title": "Final Kit",
+      "nav-home": "Home",
+      "nav-about": "About Us",
+      "nav-products": "Products",
+      "nav-technology": "Technology",
+      "nav-contact": "Contact Us",
+      "tech-heading": "Technology & Process",
+      "core-tech-heading": "Core Technology Overview",
+      "core-tech-desc": "Final Kit focuses on rapid diagnostic testing based on immunochromatography. Our proprietary NC membrane formulation and next-generation spray-drying process improve membrane uniformity by approximately 30% and yield by around 15% compared to competitors.",
+      "process-heading": "Production Process",
+      "process-list": [
+        "Reagent Preparation (Raw Material Preparation): Our proprietary formula ensures uniform pore size and reagent stability.",
+        "Membrane Formation (Coating/Spraying): Advanced techniques result in uniformly thick membranes with enhanced consistency.",
+        "Drying, Fixation, and Surface Sealing: Reduces non-specific binding and improves detection reliability.",
+        "Cutting and Assembly: An automated production line produces tens of thousands of test strips per hour with minimal error."
+      ],
+      "quality-heading": "Quality Management System",
+      "quality-desc": "From raw material inspection to finished product release, every step follows GMP guidelines for medical devices. Certified by ISO 13485, CE, and other international standards to ensure global quality compliance.",
+      "footer-text": "© 2023 Final Kit. All Rights Reserved.",
+      "toggleBtn": "Switch to English"
+    };
+
+    let currentLang = "zh"; // 初始为中文
+
+    // 切换语言函数：第一次切换时保存原始中文到 data-属性，再替换为映射表中的英文
+    function toggleLanguage() {
+      if (currentLang === "zh") {
+        for (const id in translations) {
+          const el = document.getElementById(id);
+          if (el) {
+            if (!el.dataset.zh) {
+              el.dataset.zh = el.textContent; // 保存原始中文文本
+            }
+            // 对于列表则需要特殊处理
+            if (id === "process-list") {
+              // 清空列表内容并重新生成 li
+              el.innerHTML = "";
+              translations[id].forEach(item => {
+                const li = document.createElement("li");
+                li.textContent = item;
+                el.appendChild(li);
+              });
+            } else {
+              el.textContent = translations[id];
+            }
+          }
+        }
+        document.documentElement.lang = "en";
+        document.querySelector(".lang-toggle").textContent = "切换为中文";
+        currentLang = "en";
+      } else {
+        for (const id in translations) {
+          const el = document.getElementById(id);
+          if (el && el.dataset.zh) {
+            // 处理列表单独恢复
+            if (id === "process-list") {
+              // 这里假设原始中文列表内容已保存为 HTML，不需要重新拆分（可自行扩展）
+              // 如果需要更精细恢复，可考虑保存 innerHTML 字符串
+              el.innerHTML = el.dataset.zh;
+            } else {
+              el.textContent = el.dataset.zh;
+            }
+          }
+        }
+        document.documentElement.lang = "zh";
+        document.querySelector(".lang-toggle").textContent = "Switch to English";
+        currentLang = "zh";
+      }
+    }
+  </script>
+</body>
+</html>

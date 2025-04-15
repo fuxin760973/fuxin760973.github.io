@@ -1,0 +1,261 @@
+/* 全局基本样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f8f8f8;
+    color: #333;
+  }
+  .container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px 0;
+  }
+  
+  /* 页头 */
+  header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+  }
+  .header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo h1 {
+    font-size: 24px;
+  }
+  .slogan {
+    font-size: 14px;
+    color: #ccc;
+  }
+  nav ul {
+    list-style: none;
+    display: flex;
+  }
+  nav ul li {
+    margin-left: 20px;
+  }
+  nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+  }
+  nav ul li a.active,
+  nav ul li a:hover {
+    color: #ffcc00;
+  }
+  
+  /* 首页轮播/横幅 */
+  #hero {
+    background: url("../images/hero_bg.png") no-repeat center center/cover;
+    color: #fff;
+    padding: 100px 0;
+    text-align: center;
+  }
+  
+  #hero h2 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  #hero p {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+  .btn {
+    text-decoration: none;
+    background-color: #ffcc00;
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 3px;
+    font-weight: bold;
+  }
+  
+  /* 核心亮点 */
+  #highlights {
+    background-color: #fff;
+    padding: 50px 0;
+  }
+  #highlights h3 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+  }
+  .highlight-items {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  .highlight-items .item {
+    flex: 1 1 45%;
+    background-color: #f1f1f1;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 3px;
+  }
+  .highlight-items .item h4 {
+    margin-bottom: 10px;
+  }
+  
+  /* 页面通用标题 */
+  main h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  /* 关于我们页面 */
+  main p,
+  main ul {
+    font-size: 16px;
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  main ul {
+    list-style: disc inside;
+  }
+  
+  /* 产品展示 */
+  .product-category {
+    margin-bottom: 40px;
+  }
+  .product-category h3 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+  .product-category p {
+    margin-bottom: 10px;
+  }
+  .product-category img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: auto;
+  }
+  
+  /* 技术与工艺 */
+  ol {
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+  ol li {
+    margin-bottom: 10px;
+  }
+  
+  /* 联系我们页面 */
+
+  .social-wrapper {
+    text-align: center;
+    margin: 20px 0;
+  }
+  
+  /* .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+  } */
+  .contact-details {
+    margin-bottom: 20px;
+  }
+  .contact-details h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  .contact-details p a {
+    color: #ffcc00;
+    text-decoration: none;
+  }
+  .contact-form {
+    margin-top: 30px;
+  }
+  .contact-form form {
+    display: flex;
+    flex-direction: column;
+  }
+  .contact-form label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  .contact-form button {
+    width: 120px;
+    padding: 10px;
+    background-color: #ffcc00;
+    border: none;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  
+  /* 页脚 */
+  footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+  }
+  .footer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .social-links {
+    display: flex;
+    /* justify-content: center; */
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+  }
+  .social-links li {
+    display: inline;
+    margin: 0 10px;
+    margin-left: 0%;
+  }
+  .social-links li a {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #0077B5;  /* 可根据需要调整颜色 */
+    border-radius: 5px;
+    color: #0077B5;
+    font-weight: bold;
+    font-size: 15px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .social-links li a:hover {
+    background-color: #0077B5;
+    color: #fff;
+  }
+  
+  /* 响应式样式 */
+  @media (max-width: 768px) {
+    .header-container, .footer-container {
+      flex-direction: column;
+    }
+    nav ul {
+      flex-direction: column;
+      margin-top: 10px;
+    }
+    .highlight-items {
+      flex-direction: column;
+    }
+  }
+  

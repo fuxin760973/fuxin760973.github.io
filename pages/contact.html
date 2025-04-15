@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>联系我们 - Final Kit</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    .lang-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #ffcc00;
+      border: none;
+      padding: 10px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 3px;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <!-- 切换语言按钮 -->
+  <button class="lang-toggle" onclick="toggleLanguage()">Switch to English</button>
+
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <h1 id="header-title">Final Kit</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="../index.html" id="nav-home">首页</a></li>
+          <li><a href="about.html" id="nav-about">关于我们</a></li>
+          <li><a href="products.html" id="nav-products">产品展示</a></li>
+          <li><a href="technology.html" id="nav-technology">技术与工艺</a></li>
+          <li><a href="contact.html" id="nav-contact" class="active">联系我们</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+      <h2 id="contact-heading">联系我们</h2>
+      <p id="contact-desc">如需了解更多信息或寻求合作，欢迎通过以下方式与我们联系：</p>
+      
+      <div class="contact-details">
+        <h3 id="hq-heading">美国总部（硅谷）</h3>
+        <p id="hq-address">地址：美国加州硅谷</p>
+        <p id="hq-phone">电话：+1-XXX-XXX-XXXX</p>
+        <p id="hq-email">邮箱：<a href="mailto:info@finalkit.co">info@finalkit.co</a></p>
+      </div>
+      
+      <div class="contact-details">
+        <h3 id="support-heading">商务合作与技术支持</h3>
+        <p id="support-business">商务邮件：<a href="mailto:business@finalkit.co">business@finalkit.co</a></p>
+        <p id="support-tech">技术支持：<a href="mailto:support@finalkit.co">support@finalkit.co</a></p>
+      </div>
+      
+      <div class="social-contact">
+        <h3 id="social-heading">关注我们</h3>
+        <ul class="social-links">
+          <li><a href="https://www.linkedin.com" target="_blank" id="social-linkedin">LinkedIn 领英主页</a></li>
+          <!-- 其他社交媒体链接 -->
+        </ul>
+      </div>
+      
+      <!-- 联系表单部分 -->
+      <section class="contact-form">
+        <h3 id="form-heading">给我们留言</h3>
+        <form action="#" method="post" id="contactForm">
+          <label for="name" id="form-label-name">姓名</label>
+          <input type="text" id="name" name="name" required>
+          
+          <label for="email" id="form-label-email">邮箱</label>
+          <input type="email" id="email" name="email" required>
+          
+          <label for="message" id="form-label-message">留言内容</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+          
+          <button type="submit" class="btn" id="form-submit-btn">发送</button>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container footer-container">
+      <p id="footer-text">&copy; 2023 Final Kit. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // 翻译映射表：key 为各个需要翻译的元素 id，对应英文文本。
+    const translations = {
+      "header-title": "Final Kit",
+      "nav-home": "Home",
+      "nav-about": "About Us",
+      "nav-products": "Products",
+      "nav-technology": "Technology",
+      "nav-contact": "Contact Us",
+      "contact-heading": "Contact Us",
+      "contact-desc": "For more information or partnership inquiries, please contact us using the methods below:",
+      "hq-heading": "Headquarters (Silicon Valley, USA)",
+      "hq-address": "Address: Silicon Valley, California, USA",
+      "hq-phone": "Phone: +1-XXX-XXX-XXXX",
+      "hq-email": "Email: info@finalkit.co",
+      "support-heading": "Business & Technical Support",
+      "support-business": "Business Email: business@finalkit.co",
+      "support-tech": "Technical Support: support@finalkit.co",
+      "social-heading": "Follow Us",
+      "social-linkedin": "LinkedIn",
+      "form-heading": "Leave Us a Message",
+      "form-label-name": "Name",
+      "form-label-email": "Email",
+      "form-label-message": "Message",
+      "form-submit-btn": "Send",
+      "footer-text": "© 2023 Final Kit. All Rights Reserved.",
+      "toggleBtn": "Switch to English"
+    };
+
+    let currentLang = "zh"; // 初始语言为中文
+
+    // 切换语言函数：当第一次切换时，保存原始中文文本到 dataset.zh 属性；再次切换时直接恢复
+    function toggleLanguage() {
+      if (currentLang === "zh") {
+        for (const id in translations) {
+          const el = document.getElementById(id);
+          if (el) {
+            if (!el.dataset.zh) {
+              el.dataset.zh = el.textContent;
+            }
+            // 对于嵌入链接的文本（如邮箱、商务邮件等）如果需要替换仅改变文字部分，
+            // 可在此进行更精细判断处理；这里简单替换整体文本
+            el.textContent = translations[id];
+          }
+        }
+        document.documentElement.lang = "en";
+        document.querySelector(".lang-toggle").textContent = "切换为中文";
+        currentLang = "en";
+      } else {
+        for (const id in translations) {
+          const el = document.getElementById(id);
+          if (el && el.dataset.zh) {
+            el.textContent = el.dataset.zh;
+          }
+        }
+        document.documentElement.lang = "zh";
+        document.querySelector(".lang-toggle").textContent = "Switch to English";
+        currentLang = "zh";
+      }
+    }
+  </script>
+</body>
+</html>

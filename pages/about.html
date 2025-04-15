@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>关于我们 - Final Kit</title>
+  <link rel="stylesheet" href="../css/styles.css">
+  <style>
+    .lang-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #ffcc00;
+      border: none;
+      padding: 10px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 3px;
+      z-index: 1000;
+    }
+  </style>
+</head>
+<body>
+  <!-- 添加切换语言按钮，不改变页面其他内容 -->
+  <button class="lang-toggle" onclick="toggleLanguage()">Switch to English</button>
+  
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <!-- 添加 id，不改变内部文字 -->
+        <h1 id="header-title">Final Kit</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="../index.html" id="nav-home">首页</a></li>
+          <li><a href="about.html" id="nav-about" class="active">关于我们</a></li>
+          <li><a href="products.html" id="nav-products">产品展示</a></li>
+          <li><a href="technology.html" id="nav-technology">技术与工艺</a></li>
+          <li><a href="contact.html" id="nav-contact">联系我们</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  
+  <main>
+    <div class="container">
+      <!-- 给每个需要翻译的元素添加 id -->
+      <h2 id="about-heading">关于我们</h2>
+      <p id="about-content">
+        Final Kit 是一家聚焦于全球体外诊断快速检测（POCT）领域的高新技术企业，成立于 2023 年，由一支具有深厚行业经验的本土团队在美国加州硅谷创立。公司以“让健康触手可及”为使命，致力于将高质量的 NC 膜及快速检测产品带给全球市场，推动便捷医疗和健康管理的普及。
+      </p>
+      
+      <h3 id="advantages-heading">我们的优势</h3>
+      <ul id="advantages-list">
+        <li>完善的产品矩阵</li>
+        <li>核心技术与专利：自主研发 NC 膜及胶体金制备技术</li>
+        <li>全球化运营：美国总部与海外生产基地布局</li>
+        <li>规模化自动生产和严格质量控制</li>
+        <li>卓越的团队实力与丰富行业经验</li>
+      </ul>
+
+      <h3 id="honors-heading">企业荣誉</h3>
+      <p id="honors-content">
+        获得国家级专精特新“小巨人”、国家高新技术企业、欧洲 CE、ISO 13485 认证等权威资质。并在业内率先打破高端 NC 膜被垄断的局面，市场占有率稳居国内首位。
+      </p>
+
+      <h3 id="team-heading">团队介绍</h3>
+      <p id="team-content">
+        我们的核心团队拥有10年以上 IVD 领域经验，包括 POCT 生产专家、药物滥用检测领军人才以及具有全球运营视野的管理精英，秉承“诚信做人，用心做事”的理念，不断创新、精进、共生、善行。
+      </p>
+    </div>
+  </main>
+  
+  <footer>
+    <div class="container footer-container">
+      <p id="footer-text">&copy; 2023 Final Kit. All Rights Reserved.</p>
+    </div>
+  </footer>
+  
+  <script>
+    // 定义翻译映射表：以每个元素的 id 为键，对应的英文内容
+    const translations = {
+      "header-title": "Final Kit",
+      "nav-home": "Home",
+      "nav-about": "About Us",
+      "nav-products": "Products",
+      "nav-technology": "Technology",
+      "nav-contact": "Contact Us",
+      "about-heading": "About Us",
+      "about-content": "Final Kit is a high-tech enterprise focused on rapid point-of-care diagnostics (POCT). Founded in 2023 in Silicon Valley by a team with rich industry experience, our mission is 'Accessible Health for Everyone'. We are dedicated to bringing high-quality NC membranes and rapid test products to the global market, promoting convenient medical care and health management.",
+      "advantages-heading": "Our Advantages",
+      "advantages-list": "Comprehensive product matrix; Core technology & patents: Proprietary NC membrane and colloidal gold preparation techniques; Global operations: US headquarters with overseas production bases; Automated mass production and rigorous quality control; Excellent team with extensive industry experience.",
+      "honors-heading": "Corporate Honors",
+      "honors-content": "Awarded as a national specialized 'Little Giant', recognized as a national high-tech enterprise, and certified by European CE and ISO 13485. We broke the monopoly of high-end NC membranes and hold the top domestic market share.",
+      "team-heading": "Team Introduction",
+      "team-content": "Our core team has over 10 years of experience in the IVD field, including experts in POCT production, leading talents in drug abuse detection, and management elites with a global perspective. We adhere to the philosophy of 'Integrity and Dedication', continuously innovating, advancing, coexisting, and doing good.",
+      "footer-text": "© 2023 Final Kit. All Rights Reserved.",
+      "toggleBtn": "Switch to English"
+    };
+
+    let currentLang = "zh"; // 初始语言为中文
+
+    // 切换语言时，如果是从中文切换到英文，则将原文本存入 dataset.zh（仅第一次保存）
+    // 再替换文本为英文；切换回中文时，则直接恢复原始中文文本
+    function toggleLanguage() {
+      if (currentLang === "zh") {
+        for (const id in translations) {
+          const el = document.getElementById(id);
+          if (el) {
+            if (!el.dataset.zh) {
+              el.dataset.zh = el.textContent; // 保存原始中文文本
+            }
+            el.textContent = translations[id]; // 替换为英文内容
+          }
+        }
+        document.documentElement.lang = "en";
+        document.querySelector(".lang-toggle").textContent = "切换为中文";
+        currentLang = "en";
+      } else {
+        for (const id in translations) {
+          const el = document.getElementById(id);
+          if (el && el.dataset.zh) {
+            el.textContent = el.dataset.zh; // 恢复原始中文文本
+          }
+        }
+        document.documentElement.lang = "zh";
+        document.querySelector(".lang-toggle").textContent = "Switch to English";
+        currentLang = "zh";
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,2 +1,108 @@
-<p>Final Kit</p>
-<p>Coming Soon</p>
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Final Kit 企业门户</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <style>
+    .lang-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #ffcc00;
+      border: none;
+      padding: 10px 15px;
+      font-size: 14px;
+      cursor: pointer;
+      border-radius: 3px;
+    }
+  </style>
+</head>
+<body>
+  <!-- 切换语言按钮 -->
+  <button class="lang-toggle" onclick="toggleLanguage()">Switch to English</button>
+
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <h1 id="header-title">Final Kit</h1>
+        <p id="header-slogan">让健康触手可及</p>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html" id="nav-home">首页</a></li>
+          <li><a href="pages/about.html" id="nav-about">关于我们</a></li>
+          <li><a href="pages/products.html" id="nav-products">产品展示</a></li>
+          <li><a href="pages/technology.html" id="nav-technology">技术与工艺</a></li>
+          <li><a href="pages/contact.html" id="nav-contact">联系我们</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="hero">
+      <div class="container">
+        <h2 id="hero-heading">欢迎来到 Final Kit</h2>
+        <p id="hero-description">专注于体外诊断快速检测的高新技术企业，赋能全球健康管理。</p>
+        <a href="pages/about.html" class="btn" id="hero-btn">了解我们</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-container">
+      <p id="footer-text">&copy; 2023 Final Kit. 版权所有。</p>
+    </div>
+  </footer>
+
+  <script>
+    // 翻译映射表，根据元素 id 定义英文内容
+    const translationMapping = {
+      "header-title": "Final Kit",
+      "header-slogan": "Accessible Health for Everyone",
+      "nav-home": "Home",
+      "nav-about": "About Us",
+      "nav-products": "Products",
+      "nav-technology": "Technology",
+      "nav-contact": "Contact Us",
+      "hero-heading": "Welcome to Final Kit",
+      "hero-description": "A high-tech enterprise focused on rapid point-of-care diagnostics, empowering global health management.",
+      "hero-btn": "Learn More",
+      "footer-text": "© 2023 Final Kit. All Rights Reserved."
+    };
+
+    let currentLang = "zh";  // 初始语言为中文
+
+    function toggleLanguage() {
+      if (currentLang === "zh") {
+        // 切换到英文：将每个带 id 的元素替换为翻译文本，同时保存原始文本
+        for (const id in translationMapping) {
+          const el = document.getElementById(id);
+          if (el) {
+            if (!el.dataset.zh) {
+              el.dataset.zh = el.textContent;  // 保存原始中文
+            }
+            el.textContent = translationMapping[id];
+          }
+        }
+        document.documentElement.lang = "en";
+        document.querySelector(".lang-toggle").textContent = "切换为中文";
+        currentLang = "en";
+      } else {
+        // 恢复为中文，从已保存的数据中恢复
+        for (const id in translationMapping) {
+          const el = document.getElementById(id);
+          if (el && el.dataset.zh) {
+            el.textContent = el.dataset.zh;
+          }
+        }
+        document.documentElement.lang = "zh";
+        document.querySelector(".lang-toggle").textContent = "Switch to English";
+        currentLang = "zh";
+      }
+    }
+  </script>
+</body>
+</html>
